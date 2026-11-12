@@ -86,8 +86,8 @@ export default function CategorySelector({
 
               <p className="mt-0.5 text-xs text-gray-400">
                 {category1
-                  ? `${currentCategory1Name}의 지역`
-                  : "시/도를 먼저 선택하세요"}
+                  ? `${currentCategory1Name}의 상세 카테고리`
+                  : "첫 번째 카테고리를 먼저 선택하세요"}
               </p>
             </div>
 
@@ -101,7 +101,7 @@ export default function CategorySelector({
           <ul className="max-h-72 space-y-0.5 overflow-y-auto p-2">
             {isLoading ? (
               <li className="flex min-h-48 items-center justify-center px-3 text-sm text-gray-400">
-                시/군/구를 불러오는 중...
+                상세 카테고리 불러오는 중...
               </li>
             ) : category2List.length > 0 ? (
               <>
@@ -125,7 +125,7 @@ export default function CategorySelector({
                   </button>
                 </li>
 
-                {/* 시/군/구 */}
+                {/* 상세 카테고리 */}
                 {category2List.map((item) => {
                   const isSelected = category2 === item.code;
 
@@ -155,9 +155,9 @@ export default function CategorySelector({
               </>
             ) : (
               <li className="flex min-h-48 items-center justify-center px-3 text-center text-sm text-gray-400">
-                시/도를 먼저 선택하면
+                첫 번째 카테고리를를 먼저 선택하면
                 <br />
-                시/군/구를 선택할 수 있습니다.
+                상세 카테고리를 선택할 수 있습니다.
               </li>
             )}
           </ul>

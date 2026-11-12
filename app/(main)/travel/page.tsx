@@ -17,7 +17,7 @@ export default async function TravelPage({ searchParams }: TravelPageProps) {
   const resolvedParams = await searchParams;
 
   return (
-    <section className="mt-5 w-full max-w-7xl px-3">
+    <section className="mt-5 w-full max-w-7xl px-4 sm:px-6">
       <TravelSearch />
 
       <TravelList searchParams={resolvedParams} />

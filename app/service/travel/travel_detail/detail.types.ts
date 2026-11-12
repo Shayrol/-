@@ -1,3 +1,4 @@
+// =========================================================================
 export interface CommonInfo {
   contentid: string;
   contenttypeid: string;
@@ -58,6 +59,81 @@ export interface CommonInfoResponse {
   };
 }
 
+// =========================================================================
+
+export interface DetailIntro {
+  chkbabycarriageshopping: string;
+  chkcreditcardshopping: string;
+  chkpetshopping: string;
+  contentid: string;
+  contenttypeid: string;
+  culturecenter: string;
+  fairday: string;
+  infocentershopping: string;
+  opendateshopping: string;
+  opentime: string;
+  parkingshopping: string;
+  restdateshopping: string;
+  restroom: string;
+  saleitem: string;
+  saleitemcost: string;
+  scaleshopping: string;
+  shopguide: string;
+}
+
+export interface DetailIntroResponse {
+  response: {
+    header: {
+      resultCode: string;
+      resultMsg: string;
+    };
+
+    body: {
+      items: {
+        item: DetailIntro[];
+      };
+
+      numOfRows: number;
+      pageNo: number;
+      totalCount: number;
+    };
+  };
+}
+
+// =========================================================================
+
+export interface DetailImageInfo {
+  contentid: string;
+  cpyrhtDivCd: string;
+  imgname: string;
+  originimgurl: string;
+  serialnum: string;
+  smallimageurl: string;
+}
+
+export interface DetailImageInfoResponse {
+  response: {
+    header: {
+      resultCode: string;
+      resultMsg: string;
+    };
+
+    body: {
+      items: {
+        item: DetailImageInfo[];
+      };
+
+      numOfRows: number;
+      pageNo: number;
+      totalCount: number;
+    };
+  };
+}
+
+// =========================================================================
+
 export interface TravelDetailResponse {
   common: CommonInfoResponse;
+  intro: DetailIntroResponse;
+  image: DetailImageInfoResponse;
 }

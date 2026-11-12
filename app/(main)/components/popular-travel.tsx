@@ -1,5 +1,3 @@
-import { ArrowRight } from "lucide-react";
-import { POPULAR_TRAVEL_LIST } from "../data/popular-travel.data";
 import PopularTravelSwiper from "./popular-travel-swiper";
 
 export default function PopularTravel() {

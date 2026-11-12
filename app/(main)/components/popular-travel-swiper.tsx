@@ -16,16 +16,17 @@ export default function PopularTravelSwiper() {
       observer={true}
       observeParents={true}
       className="w-full"
-      // breakpoints={{
-      //   640: {
-      //     slidesPerView: 2.2,
-      //     spaceBetween: 16,
-      //   },
-      //   1024: {
-      //     slidesPerView: 3,
-      //     spaceBetween: 20,
-      //   },
-      // }}
+      loop={true}
+      breakpoints={{
+        640: {
+          slidesPerView: 2.2,
+          spaceBetween: 16,
+        },
+        1024: {
+          slidesPerView: 3,
+          spaceBetween: 20,
+        },
+      }}
     >
       {POPULAR_TRAVEL_LIST.map((travel, index) => (
         <SwiperSlide

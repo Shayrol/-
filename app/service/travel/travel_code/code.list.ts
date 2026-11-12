@@ -23,17 +23,17 @@ export type RegionCode = (typeof TRAVEL_REGION_CODES)[number];
 
 // 관광지 분류 코드
 export const TRAVEL_CATEGORY_CODES = [
-  { code: "00", name: "전체" },
-  { code: "AC", name: "숙박" },
-  { code: "C01", name: "추천코스" },
-  { code: "EV", name: "축제/공연/행사" },
-  { code: "EX", name: "체험관광" },
-  { code: "FD", name: "음식" },
-  { code: "HS", name: "역사관광" },
-  { code: "LS", name: "레저스포츠" },
-  { code: "NA", name: "자연관광" },
-  { code: "SH", name: "쇼핑" },
-  { code: "VE", name: "문화관광" },
+  { code: "00", name: "전체", id: 0 },
+  { code: "AC", name: "숙박", id: 32 },
+  { code: "C01", name: "추천코스", id: 12 },
+  { code: "EV", name: "축제/공연/행사", id: 15 },
+  { code: "EX", name: "체험관광", id: 12 },
+  { code: "FD", name: "음식", id: 39 },
+  { code: "HS", name: "역사관광", id: 12 },
+  { code: "LS", name: "레저스포츠", id: 28 },
+  { code: "NA", name: "자연관광", id: 12 },
+  { code: "SH", name: "쇼핑", id: 38 },
+  { code: "VE", name: "문화관광", id: 12 },
 ];
 
 export type TourismCategory = (typeof TRAVEL_CATEGORY_CODES)[number];
