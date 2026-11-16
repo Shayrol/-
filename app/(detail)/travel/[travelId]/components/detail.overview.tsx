@@ -50,7 +50,7 @@ export default function TravelOverview({ overview }: TravelOverviewProps) {
 
         {/* 마지막 줄 페이드 효과 */}
         {isOverflow && !isExpanded && (
-          <div className="absolute bottom-0 left-0 w-full h-7 pointer-events-none bg-gradient-to-t from-white to-transparent" />
+          <div className="absolute bottom-0 left-0 w-full h-7 pointer-events-none bg-gradient-to-t from-[#F6F5F0] to-transparent" />
         )}
       </div>
 
