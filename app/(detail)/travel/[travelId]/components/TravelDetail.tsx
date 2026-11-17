@@ -16,10 +16,11 @@ import TravelOverview from "./detail.overview";
 import TravelImageGallery from "./detail.image.gallery";
 import KakaoMap from "@/components/kakao/kakao.map";
 import DetailIntroSection from "./detail.intro.section";
+import { isTravelEnded } from "@/utils/date";
 
 interface DetailProps {
   common: CommonInfo;
-  intro: TravelDetailIntro;
+  intro?: TravelDetailIntro;
   image: DetailImageInfo[];
 }
 
@@ -52,15 +53,23 @@ export default function TravelDetail({ common, intro, image }: DetailProps) {
 
         {/* 카테고리, 제목, 주소 */}
         <div className="flex flex-col justify-between items-start gap-2 w-full sm:flex-row sm:items-end">
-          <div className="">
+          <div className="w-full min-w-0 sm:flex-1">
             <p className="text-xs font-semibold text-[#EC5B3F]/90">
               {`${TRAVEL_CATEGORY_DETAIL_MAP1.get(common.lclsSystm1)} ▪ ${TRAVEL_CATEGORY_DETAIL_MAP2.get(common.lclsSystm2)} ▪ ${TRAVEL_CATEGORY_DETAIL_MAP3.get(common.lclsSystm3)}`}
             </p>
-            <h1 className="text-[clamp(2.25rem,5vw,3.75rem)] font-black text-[#17211B]">
-              {common.title}
+
+            <h1 className="flex items-center min-w-0 text-[clamp(2.25rem,5vw,3.75rem)] font-black text-[#17211B]">
+              <span className="min-w-0  truncate">{common.title}</span>
+
+              {intro?.contenttypeid === "15" && (
+                <span className="shrink-0 text-[#EC5B3F]">
+                  {isTravelEnded(intro.eventenddate!) ? "(종료)" : "(진행중)"}
+                </span>
+              )}
             </h1>
           </div>
-          <p className="flex justify-start items-center gap-1 text-base font-normal">
+
+          <p className="flex shrink-0 justify-start items-center gap-1 text-base font-normal text-nowrap">
             <MapPin className="w-4 h-4 text-[#EC5B3F]" />
             {common.addr1}
           </p>
@@ -88,7 +97,7 @@ export default function TravelDetail({ common, intro, image }: DetailProps) {
             <TravelOverview overview={common.overview} />
           </article>
 
-          <aside className="flex-1 flex flex-col w-full bg-[#DCD8CC] rounded-2xl">
+          <aside className="flex-1 flex flex-col w-full bg-[#EFECE4] rounded-2xl">
             <div className="flex justify-between items-center py-[clamp(1rem,2cqw,1.5rem)] px-[clamp(1.5rem,2cqw,2rem)]">
               <div>
                 <p className="text-xs font-bold text-[#EC5B3F]">LOCATION</p>
@@ -111,7 +120,7 @@ export default function TravelDetail({ common, intro, image }: DetailProps) {
               mlevel={common.mlevel}
               title={common.title}
               zipcode={common.zipcode}
-              className="w-full h-[400px]"
+              className="w-full h-100"
             />
 
             <div className="flex flex-col gap-4 py-[clamp(1rem,2cqw,1.5rem)] px-[clamp(1.5rem,2cqw,2rem)]">

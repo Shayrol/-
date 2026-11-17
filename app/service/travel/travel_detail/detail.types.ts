@@ -249,7 +249,7 @@ export interface DetailIntroResponse {
 
     body: {
       items: {
-        item: TravelDetailIntro;
+        item: TravelDetailIntro[];
       };
 
       numOfRows: number;

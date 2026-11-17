@@ -9,13 +9,14 @@ import TravelLeportsIntro from "./intro/TravelLeportsIntro";
 import TravelLodgingIntro from "./intro/TravelLodgingIntro";
 import TravelShoppingIntro from "./intro/TravelShoppingIntro";
 import TravelFoodIntro from "./intro/TravelFoodIntro";
+import IntroNoData from "./intro/IntroNoData";
 
 interface Props {
-  intro: TravelDetailIntro;
+  intro?: TravelDetailIntro;
 }
 
 export default function DetailIntroSection({ intro }: Props) {
-  switch (intro.contenttypeid) {
+  switch (intro?.contenttypeid) {
     case "12":
       return <TravelSpotIntro intro={intro} />;
     case "14":
@@ -32,6 +33,8 @@ export default function DetailIntroSection({ intro }: Props) {
       return <TravelShoppingIntro intro={intro} />;
     case "39":
       return <TravelFoodIntro intro={intro} />;
+    case undefined:
+      return <IntroNoData />;
 
     default:
       return null;
