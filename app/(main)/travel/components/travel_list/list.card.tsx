@@ -13,7 +13,7 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
-import { ImageOff, MapPin } from "lucide-react";
+import { MapPin } from "lucide-react";
 import Image from "next/image";
 
 interface CardImageProps {

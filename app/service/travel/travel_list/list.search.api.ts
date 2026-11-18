@@ -17,7 +17,7 @@ export async function getKeywordInfo({
   lDongSignguCd,
   lclsSystm1,
   lclsSystm2,
-  pageNo,
+  pageNo = 1,
   keyword,
 }: GetKeywordInfoParams) {
   if (keyword === "") {

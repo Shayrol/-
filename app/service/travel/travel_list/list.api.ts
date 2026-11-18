@@ -14,7 +14,7 @@ export async function getTourismInfo({
   lDongSignguCd,
   lclsSystm1,
   lclsSystm2,
-  pageNo,
+  pageNo = 1,
 }: GetTourismInfoParams) {
   const params = new URLSearchParams({
     serviceKey: API_KEY,
