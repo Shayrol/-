@@ -31,7 +31,7 @@ export default function AiTravelHero() {
         </p>
 
         <Link
-          href={"#"}
+          href={"/ai"}
           className="flex justify-center items-center gap-3 w-fit text-white text-sm font-extrabold bg-[#EC5B3F] rounded-4xl py-2 px-2 pl-5"
         >
           관광지 검색하러 가기{" "}

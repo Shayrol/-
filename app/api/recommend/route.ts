@@ -3,6 +3,10 @@ import Groq from "groq-sdk";
 
 import { getTourismInfo } from "@/app/service/travel/travel_list/list.api";
 import { getKeywordInfo } from "@/app/service/travel/travel_list/list.search.api";
+import {
+  TravelItem,
+  TravelResponse,
+} from "@/app/service/travel/travel_list/list.types";
 
 // ========================================
 // Types
@@ -158,7 +162,7 @@ function createTravelSchedule(
 // ========================================
 
 // KTO API 응답에서 관광지 목록 추출
-function getItems(data: any): any[] {
+function getItems(data: TravelResponse): TravelItem[] {
   const items = data?.response?.body?.items?.item;
 
   if (!items) {
@@ -169,7 +173,7 @@ function getItems(data: any): any[] {
 }
 
 // KTO 관광지 데이터 정리
-function normalizeTourism(item: any): TourismCandidate | null {
+function normalizeTourism(item: TravelItem): TourismCandidate | null {
   if (!item.contentid || !item.title) {
     return null;
   }
@@ -275,7 +279,7 @@ async function getTourismCandidates(
   // 5. 모든 검색 요청 실행
   const results = await Promise.allSettled(tasks.map((task) => task.request()));
 
-  const items: any[] = [];
+  const items: TravelItem[] = [];
 
   let successCount = 0;
   let failureCount = 0;
@@ -484,7 +488,7 @@ async function createRecommendation(
   }
 
   try {
-    return JSON.parse(content) as RecommendationResponse;
+    return JSON.parse(content) as LLMRecommendationResponse;
   } catch {
     console.error("[Groq JSON 파싱 실패]", content);
 
@@ -497,10 +501,10 @@ async function createRecommendation(
 // ========================================
 
 function validateRecommendation(
-  recommendation: RecommendationResponse,
+  recommendation: LLMRecommendationResponse,
   candidates: TourismCandidate[],
   schedule: TravelSchedule[],
-) {
+): RecommendationResponse {
   if (!recommendation || !Array.isArray(recommendation.days)) {
     throw new Error("추천 결과의 일정 데이터가 올바르지 않습니다.");
   }
@@ -510,7 +514,7 @@ function validateRecommendation(
   );
 
   // 날짜별 LLM 응답 매핑
-  const recommendationMap = new Map<number, RecommendationDay>();
+  const recommendationMap = new Map<number, LLMRecommendationDay>();
 
   recommendation.days.forEach((day) => {
     const dayNumber = Number(day.day);
@@ -552,7 +556,7 @@ function validateRecommendation(
         return;
       }
 
-      // 하루 최대 5개 장소
+      // 하루 최대 장소 수 제한
       if (places.length >= MAX_PLACES_PER_DAY) {
         return;
       }
@@ -563,7 +567,7 @@ function validateRecommendation(
         ...candidate,
         reason: place.reason ?? "",
         visitOrder: places.length + 1,
-      } as RecommendationPlace);
+      });
     });
 
     return {
